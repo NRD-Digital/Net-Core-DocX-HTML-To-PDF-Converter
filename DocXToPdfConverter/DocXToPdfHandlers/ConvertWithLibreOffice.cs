@@ -79,7 +79,7 @@ namespace DocXToPdfConverter.DocXToPdfHandlers
             }
             else if ((inputFile.EndsWith(".html") || inputFile.EndsWith(".htm")) && (outputFile.EndsWith(".docx")))
             {
-                commandArgs.Add("docx:\"Office Open XML Text\"");
+                commandArgs.Add("docx:Office Open XML Text");
                 convertedFile = Path.Combine(tmpFolder, Path.GetFileNameWithoutExtension(inputFile) + ".docx");
             }
 
@@ -101,7 +101,7 @@ namespace DocXToPdfConverter.DocXToPdfHandlers
                 Thread.Sleep(5000);
                 pname = Process.GetProcessesByName("soffice");
             }
-
+            
             process.Start();
             process.WaitForExit();
 
