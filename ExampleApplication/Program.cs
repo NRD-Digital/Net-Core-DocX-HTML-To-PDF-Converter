@@ -10,11 +10,13 @@
  */
 
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using DocXToPdfConverter;
 using DocXToPdfConverter.DocXToPdfHandlers;
+using Microsoft.Extensions.Configuration;
 
 namespace ExampleApplication
 {
@@ -32,11 +34,16 @@ namespace ExampleApplication
              * Possible conversions: from HTML or from DOCX to PDF, HTML, DOCX
              *
              */
+            
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory) 
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
 
             //Enter the location of your LibreOffice soffice.exe below, full path with "soffice.exe" at the end
             //or anything you have in Linux...
 
-            string locationOfLibreOfficeSoffice =
+            string locationOfLibreOfficeSoffice = config["LibreOfficeExecutablePath"] ??
                 @"C:\Program Files\LibreOffice\program\soffice.exe";
 
 
